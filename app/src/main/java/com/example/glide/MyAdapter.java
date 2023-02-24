@@ -1,5 +1,7 @@
 package com.example.glide;
 
+import android.content.ClipData;
+import android.content.Context;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,22 +18,19 @@ import com.bumptech.glide.Glide;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-    List<Data>dataList;
-    CircularArray<Object> myUrls;
-
-   public MyAdapter(List<Data>dataList){
-       this.dataList=dataList;
-   }
+    List<Data> dataList;
 
 
-
+    public MyAdapter(List<Data> dataList) {
+        this.dataList = dataList;
+    }
 
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater=LayoutInflater.from(parent.getContext());
-        View view=inflater.inflate(R.layout.design,parent,false);
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View view = inflater.inflate(R.layout.design, parent, false);
         return new ViewHolder(view);
 
     }
@@ -39,32 +38,29 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
+        Data data = dataList.get(position);
+        holder.tv.setText(data.getTitel());
 
-       holder.tv.setText(dataList.get(position).getTitel());
-
-
-      //  Glide.with(dataList.get.load("https://rukminim1.flixcart.com/image/416/416/xif0q/computer/u/a/n/omen-gaming-laptop-hp-original-imagmha8fueffvkh.jpeg?q=70").into(Data));
-
-
+        String uri = data.getImage(); // or whatever you want
+        Glide.with(holder.itemView.getContext()).load(uri).into(holder.img);
 
 
     }
 
     @Override
     public int getItemCount() {
-        return dataList.size() ;
+        return dataList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView img;
         TextView tv;
 
 
-
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            img=itemView.findViewById(R.id.image);
-            tv=itemView.findViewById(R.id.tv);
+            img = itemView.findViewById(R.id.image);
+            tv = itemView.findViewById(R.id.tv);
         }
 
     }

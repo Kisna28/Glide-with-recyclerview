@@ -1,16 +1,16 @@
 package com.example.glide;
 
-import java.net.URL;
+
 
 public class Data {
     String titel;
-    int image;
 
-
-    public Data(String titel, int image) {
+    public Data(String titel, String image) {
         this.titel = titel;
         this.image = image;
     }
+
+    String image;
 
     public String getTitel() {
         return titel;
@@ -20,12 +20,11 @@ public class Data {
         this.titel = titel;
     }
 
-    public int getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(int image) {
+    public void setImage(String image) {
         this.image = image;
     }
-
 }
